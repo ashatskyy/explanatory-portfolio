@@ -26,6 +26,5 @@ export function App() {
     }
   };
 
-  return <Header handleThemeToggle={handleThemeToggle} />;
-  // return (<Header  />);
+	return <Header isDark={ isDark} handleThemeToggle={handleThemeToggle} />;
 }

@@ -1,17 +1,156 @@
 .vocab {
   max-width: 737px;
   width: 100%;
-
-	padding-left: 100px;
-
   height: 36px;
   margin: 58px auto 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #000;
+
+	// border: 1px solid #000;
+}
+
+.night {
+  width: 20px;
+  height: 20px;
 }
 
 .logo {
   width: 32px;
+	 height: 32px;
+}
+
+.toggles {
+  display: flex;
+  align-items: center;
+
+}
+.shrift-toggle {
+  height: 24px;
+width: 200px;
+  display: flex;
+  gap: 18px;
+  justify-content: end;
+  cursor: pointer;
+  align-items: center;
+// border: 3px solid green;
+	
+position: relative;
+}
+
+.dropdown {
+	// border: 1px solid #000;
+	font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+	// border: 1px solid #000;
+
+}
+
+
+.dropdown-menu {
+  position: absolute;
+  top: 205%;
+  left: 7%;
+  background: white;
+
+  width: 183px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 100;
+
+  border-radius: 16px;
+}
+
+.dropdown-menu.active {
+  display: block;
+}
+
+.dropdown-menu div:hover {
+  color: #a445ed;
+  transition: color 0.3s ease-out;
+}
+
+.sans-serif {
+  padding: 24px 0 8px 24px;
+  font-family: "InterVariable" !important;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.serif {
+  padding: 8px 0 8px 24px;
+  font-family: "Lora" !important;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.mono {
+  padding: 8px 0 24px 24px;
+
+  font-family: "Inconsolata" !important;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.vl {
+  height: 32px;
+  width: 1px;
+  background-color: #979797;
+  margin: 0 26px;
+}
+.light-toggle {
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.board,
+.point {
+  border-radius: 30px;
+}
+
+.board {
+  height: 20px;
+  box-sizing: border-box;
+  width: 40px;
+  padding: 3px;
+  background-color: #979797;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: background-color 0.3s ease-in-out;
+}
+.board:hover {
+  cursor: pointer;
+  background-color: #a445ed;
+}
+.point {
+  height: 14px;
+  width: 14px;
+  background-color: white;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.move-right {
+  transform: translateX(20px);
+}
+
+.board-dark {
+  background-color: #a445ed;
+}
+
+body.dark {
+  background-color: black;
+  color: white;
+}
+
+.dropdown-menu-dark{
+	background: black;
+color: white;
+
+  box-shadow: 0 5px 30px rgba(164, 69, 237, 0.75);
 }
