@@ -8,10 +8,7 @@ export function App() {
     ).matches);
 
   // useEffect(() => {
-  //   const prefersDark = window.matchMedia(
-  //     "(prefers-color-scheme: dark)"
-  //   ).matches;
-  //   setIsDark(prefersDark);
+  // localStorage.setItem("theme", isDark ? "dark" : "light");
   // }, []);
 
 	useEffect(() => {
@@ -20,8 +17,25 @@ export function App() {
 	}, [isDark]);
 	
 	const handleThemeToggle = () => {
-    setIsDark((prev) => !prev);
+		setIsDark((prev) => !prev);
+
+
+
+
+let theme = localStorage.getItem("theme");
+
+if (!theme) {
+ 
+  localStorage.setItem("theme", "light");
+} else {
+ 
+  const newTheme = theme === "dark" ? "light" : "dark";
+  localStorage.setItem("theme", newTheme);
+  }
+
+
   };
 
 	return (<Header handleThemeToggle={ handleThemeToggle} />);
+	// return (<Header  />);
 }
