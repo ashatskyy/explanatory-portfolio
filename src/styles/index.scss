@@ -2,32 +2,36 @@
 
 @font-face {
   font-family: "InterVariable";
-  src: url("./assets/Inter-VariableFont_slnt\,wght.ttf") format("truetype");
+  src: url("/fonts/Inter-VariableFont_slnt\,wght.ttf") format("truetype");
   font-weight: 100 900;
   font-style: normal italic;
-	// font-display: swap;
-	// font-display: optional;
+
 
 
 }
-@font-face {
-  font-family: "Inconsolata";
-  src: url("./assets/Inconsolata-VariableFont_wdth\,wght.ttf")
-    format("truetype");
-  font-weight: 100 900;
-  font-style: normal;
-	// font-display: swap;
-	// font-display: optional;
-}
+
 
 @font-face {
   font-family: "Lora";
-  src: url("./assets/Lora-VariableFont_wght.ttf") format("truetype");
+  src: url("/fonts/Lora-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
-	// font-display: swap;
-	// font-display: optional;
+
 }
+
+
+@font-face {
+  font-family: "Inconsolata";
+  src: url("/fonts/Inconsolata-VariableFont_wdth\,wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+//  font-display: swap;
+
+
+
 
 body {
  margin: 0;

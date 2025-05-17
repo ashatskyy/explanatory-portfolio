@@ -72,17 +72,21 @@ position: relative;
   color: #a445ed;
   transition: color 0.3s ease-out;
 }
+.icon-arrow{
+	width: 14px;
+	height: 8px;
+}
 
 .sans-serif {
   padding: 24px 0 8px 24px;
-  font-family: "InterVariable" !important;
+  font-family: "InterVariable", sans-serif !important;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
 }
 .serif {
   padding: 8px 0 8px 24px;
-  font-family: "Lora" !important;
+  font-family: "Lora", serif !important;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -90,7 +94,7 @@ position: relative;
 .mono {
   padding: 8px 0 24px 24px;
 
-  font-family: "Inconsolata" !important;
+  font-family: "Inconsolata", monospace !important;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -145,10 +149,6 @@ position: relative;
   background-color: #a445ed;
 }
 
-body.dark {
-  background-color: black;
-  color: white;
-}
 
 .dropdown-menu-dark{
 	background: black;

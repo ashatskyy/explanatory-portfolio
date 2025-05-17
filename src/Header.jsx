@@ -1,33 +1,28 @@
-import { useState,  useRef, useEffect } from "react";
-
+import { useState, useRef, useEffect } from "react";
 
 export function Header({ isDark, handleThemeToggle }) {
-	
-	const [menuActive, setMenuActive] = useState(false);
+  const [menuActive, setMenuActive] = useState(false);
+  const [fontFamily, setFontFamily] = useState(() => {
+  const stored = localStorage.getItem("fontFamily");
+  return stored !== null ? stored : "InterVariable";
+});
 
- const [fontFamily, setFontFamily] = useState("InterVariable");
-	 
-	const shriftToggleRef = useRef(null);
+  const shriftToggleRef = useRef(null);
 
+  // useEffect(() => {
+  //   const savedFont = localStorage.getItem("fontFamily");
 
-//  useEffect(() => {
-   
-//     const savedFont = localStorage.getItem("fontFamily");
+  //   if (savedFont) {
+  //     setFontFamily(savedFont);
+  //   }
+  // }, []);
 
+  useEffect(() => {
+    // document.body.style.fontFamily = fontFamily;
+    localStorage.setItem("fontFamily", fontFamily);
+  }, [fontFamily]);
 
-// if (savedFont) {
-//       setFontFamily(savedFont);
-//     }
-//   }, []);
-
-
-//  useEffect(() => {
-//     document.body.style.fontFamily = fontFamily;
-//     localStorage.setItem("fontFamily", fontFamily);
-//   }, [fontFamily]);
-
-
-	useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (e) => {
       if (
         shriftToggleRef.current &&
@@ -36,29 +31,44 @@ export function Header({ isDark, handleThemeToggle }) {
         setMenuActive(false);
       }
     };
+
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   return (
-    // <header className="vocab" onClick={handleThemeToggle}>
 		<header className="vocab">
-			
-{/* <div style={{ fontFamily: "Inconsolata", position: "absolute", left: "-9999px" }}>.</div>
-      <div style={{ fontFamily: "Lora", position: "absolute", left: "-9999px" }}>.</div> */}
+			{/* <div style={{ fontFamily: "InterVariable", position: "absolute", left: "-9999px" }}>.</div>
+			<div style={{ fontFamily: "Lora", position: "absolute", left: "-9999px" }}>.</div>
+			<div style={{ fontFamily: "Inconsolata", position: "absolute", left: "-9999px" }}>.</div> */}
 
       <img className="logo" src="./images/iconoir_book.svg" alt="" />
-			<div className="toggles">
-				 <div
+      <div className="toggles">
+        <div
           className="shrift-toggle"
           ref={shriftToggleRef}
-       
           onClick={(e) => {
             e.stopPropagation();
             setMenuActive(!menuActive);
           }}
         >
-          <div className="dropdown">
+          <div
+            className="dropdown"
+            style={{
+              fontFamily:
+                fontFamily === "Lora"
+                  ? "Lora, serif"
+                  // ? "Lora"
+           
+                  : fontFamily === "InterVariable"
+                  ? "InterVariable, sans-serif"
+                  // ? "InterVariable"
+                
+                  : "Inconsolata, monospace",
+                  // : "Inconsolata",
+        
+            }}
+          >
             {fontFamily === "InterVariable"
               ? "Sans Serif"
               : fontFamily === "Lora"
@@ -71,7 +81,6 @@ export function Header({ isDark, handleThemeToggle }) {
               className={`dropdown-menu ${menuActive ? "active" : ""} ${
                 isDark ? "dropdown-menu-dark" : ""
               }`}
-              
             >
               <div
                 className="sans-serif"
@@ -79,10 +88,7 @@ export function Header({ isDark, handleThemeToggle }) {
               >
                 Sans Serif
               </div>
-              <div
-                className="serif"
-                onClick={() => setFontFamily("Lora")}
-              >
+              <div className="serif" onClick={() => setFontFamily("Lora")}>
                 Serif
               </div>
               <div
@@ -93,12 +99,10 @@ export function Header({ isDark, handleThemeToggle }) {
               </div>
             </div>
           </div>
-          <img src="./iamges/icon-arrow-down.svg" alt="" />
+         <img className="icon-arrow" src="./images/icon-arrow-down.svg" alt="" />
         </div>
 
         <div className="vl"></div>
-
-
 
         <div className="light-toggle">
           <div
@@ -107,11 +111,11 @@ export function Header({ isDark, handleThemeToggle }) {
           >
             <div className={`point ${isDark ? "move-right" : ""}`}></div>
           </div>
-					{isDark ? (
-						<img className="night" src="./images/icon-moon-nigth.svg" alt="" />
-					) : (
-						<img className="night" src="./images/icon-moon-day.svg" alt="" />
-					)} 
+          {isDark ? (
+            <img className="night" src="./images/icon-moon-nigth.svg" alt="" />
+          ) : (
+            <img className="night" src="./images/icon-moon-day.svg" alt="" />
+          )}
         </div>
       </div>
     </header>
