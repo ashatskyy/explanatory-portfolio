@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
-export function Header({ isDark, handleThemeToggle }) {
+export function Header({ isDark, handleThemeToggle, goHome, onUpdate }) {
+// export function Header({ isDark, handleThemeToggle, goHome }) {
   const [menuActive, setMenuActive] = useState(false);
   const [fontFamily, setFontFamily] = useState(() => {
   const stored = localStorage.getItem("fontFamily");
@@ -9,13 +10,7 @@ export function Header({ isDark, handleThemeToggle }) {
 
   const shriftToggleRef = useRef(null);
 
-  // useEffect(() => {
-  //   const savedFont = localStorage.getItem("fontFamily");
-
-  //   if (savedFont) {
-  //     setFontFamily(savedFont);
-  //   }
-  // }, []);
+  
 
   useEffect(() => {
     // document.body.style.fontFamily = fontFamily;
@@ -42,7 +37,7 @@ export function Header({ isDark, handleThemeToggle }) {
 			<div style={{ fontFamily: "Lora", position: "absolute", left: "-9999px" }}>.</div>
 			<div style={{ fontFamily: "Inconsolata", position: "absolute", left: "-9999px" }}>.</div> */}
 
-      <img className="logo" src="./images/iconoir_book.svg" alt="" />
+      <img className="logo" src="./images/iconoir_book.svg" alt="" onClick={goHome}/>
       <div className="toggles">
         <div
           className="shrift-toggle"
@@ -84,16 +79,27 @@ export function Header({ isDark, handleThemeToggle }) {
             >
               <div
                 className="sans-serif"
-                onClick={() => setFontFamily("InterVariable")}
+								onClick={() => {
+									setFontFamily("InterVariable");
+									onUpdate("InterVariable");
+								}
+								}
               >
                 Sans Serif
               </div>
-              <div className="serif" onClick={() => setFontFamily("Lora")}>
+							<div className="serif" onClick={() => {
+								setFontFamily("Lora");
+								onUpdate("Lora");
+							}
+							}>
                 Serif
               </div>
               <div
-                className="mono"
-                onClick={() => setFontFamily("Inconsolata")}
+								className="mono"
+								onClick={() => {
+									setFontFamily("Inconsolata");
+									onUpdate("Inconsolata");
+								}}
               >
                 Mono
               </div>
