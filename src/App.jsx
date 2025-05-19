@@ -113,8 +113,8 @@ const navigate = useNavigate();
 	const containerRef = useRef(null);
 
 	const scrollToTop = () => {
-		containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
-		// containerRef.current?.scrollTo({ top: 0 });
+		// containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+		containerRef.current?.scrollTo({ top: 0 });
 	};
 
 	return (
