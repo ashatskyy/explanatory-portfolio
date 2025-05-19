@@ -87,7 +87,7 @@
 }
 
 .hr {
-  flex: 1; /* makes the <hr> expand to fill the line */
+  flex: 1; /* makes hr expand to fill the line */
   border: none;
   border-top: 1px solid #e9e9e9;
   margin: 0;
@@ -115,12 +115,12 @@
 }
 
 .meanig::before {
-  content: "•"; /* Add the dot */
+  content: "•"; 
   position: absolute;
-  left: -4px; /* Align it to the left of the paragraph */
-  top: -1.5px; /* Align it to the middle of the first letter */
+  left: -4px; 
+  top: -1.5px; 
   font-size: 0.9rem;
-  color: #a445ed; /* Adjust dot size */
+  color: #a445ed; 
 }
 .example {
   padding-left: 23px;
@@ -296,7 +296,7 @@
   background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 0.3s ease;
-  pointer-events: none; /* Ensure it doesn’t interfere with clicks */
+  pointer-events: none; 
 }
 
 .button.playable:hover::after {

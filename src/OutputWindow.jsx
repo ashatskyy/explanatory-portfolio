@@ -5,27 +5,25 @@ import { populateWordFromData } from "./utils/populateWordFromData";
 import { ResultPositive } from "./ResultPositive";
 import { ResultNegative } from "./ResultNegative";
 
-export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop, handleRefInput  }) {
+export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop, handleRefInput }) {
 	const [fetchedData, setFetchedData] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 	const [request, setRequest] = useState(stringForSearch);
 
-
 	const handleWordByRef = (wordRef) => {
-	
 		scrollToTop();
 		handleRefInput(wordRef);
-		setRequest(wordRef)
-	}
+		setRequest(wordRef);
+	};
 
 	useEffect(() => {
 		setRequest(stringForSearch);
-	 },[stringForSearch])
-
+	}, [stringForSearch]);
 
 	useEffect(() => {
-
-
 		if (!request.trim()) return;
+
+		setIsLoading(true); // 🔄 Start loading
 
 		fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${request}`)
 			.then((res) => res.json())
@@ -39,6 +37,10 @@ export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop,
 			})
 			.catch((err) => {
 				console.error(err);
+				setFetchedData({ title: "Error", message: "Failed to fetch." });
+			})
+			.finally(() => {
+				setIsLoading(false); // ✅ End loading
 			});
 	}, [request]);
 
@@ -47,36 +49,30 @@ export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop,
 	}, [fetchedData]);
 
 	return (
-		<div className="output" style={{
-              fontFamily:
-                sharedFont === "Lora"
-                  ? "Lora, serif"
-                  // ? "Lora"
-           
-                  : sharedFont === "InterVariable"
-                  ? "InterVariable, sans-serif"
-                  // ? "InterVariable"
-                
-                  : "Inconsolata, monospace",
-                  // : "Inconsolata",
-        
-            }}>
-
-			{fetchedData?.word && 
-			<ResultPositive
-				fetchedData={fetchedData}
-				sharedFont={sharedFont}
-				isDark={isDark}
-					handleWordByRef={ handleWordByRef}
-			/>
-				|| fetchedData?.title && <ResultNegative isDark={isDark} request={ request}/>}
-			
-			{/* {fetchedData.word && 
-			<ResultPositive
-				fetchedData={fetchedData} />
-				|| fetchedData.title} */}
-			{/* ЗДЕСЬ ОБЯЗАТЕЛЬНО НУЖНО ВЫЯСНИТЬ ПОЧЕМУ ТАК ПРИВОДИТ К ОШИБКЕ ПРИ ПЕРЕЗАГРУЗКЕ */}
-			
-    </div>
-  );
+		<div
+			className="output"
+			style={{
+				fontFamily:
+					sharedFont === "Lora"
+						? "Lora, serif"
+						: sharedFont === "InterVariable"
+						? "InterVariable, sans-serif"
+						: "Inconsolata, monospace",
+			}}
+		>
+			{isLoading ? (
+				// <p>Loading...</p> 
+				<p>{''}</p> 
+			) : fetchedData?.word ? (
+				<ResultPositive
+					fetchedData={fetchedData}
+					sharedFont={sharedFont}
+					isDark={isDark}
+					handleWordByRef={handleWordByRef}
+				/>
+			) : fetchedData && Object.prototype.hasOwnProperty.call(fetchedData, "title") ? (
+				<ResultNegative isDark={isDark} request={request} />
+			) : null}
+		</div>
+	);
 }

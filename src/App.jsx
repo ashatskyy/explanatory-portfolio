@@ -143,7 +143,7 @@ const navigate = useNavigate();
 						
 						onChange={handleInputChange}
 						
-						
+						 maxLength="100" 
 						placeholder="Search for any word…"
 						className={`input-window ${isDark ? "input-window-dark" : ""}`}
 						
