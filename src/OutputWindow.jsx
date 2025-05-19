@@ -4,13 +4,15 @@ import { SetObjectWord } from "./models/SetObjectWord";
 import { populateWordFromData } from "./utils/populateWordFromData";
 import { ResultPositive } from "./ResultPositive";
 
-export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop  }) {
+export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop, handleRefInput  }) {
 	const [fetchedData, setFetchedData] = useState(null);
+// const [request, setequest] =useState()
 
-	const handleWordByRef = () => {
+
+	const handleWordByRef = (wordRef) => {
 	
 		scrollToTop();
-		
+		handleRefInput(wordRef)
 	}
 
 	useEffect(() => {

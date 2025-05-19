@@ -72,6 +72,7 @@ const navigate = useNavigate();
 
   const handleInputChange = (e) => setInputedOrAddressString(e.target.value);
 
+	const handleRefInput = (e) => setInputedOrAddressString(e);
 
   const goHome = () => {
     navigate("/");
@@ -118,6 +119,7 @@ const navigate = useNavigate();
 				handleThemeToggle={handleThemeToggle}
 				goHome={goHome}
 				onUpdate={setSharedFont}
+			
 			/>
       
 				<main className="main">
@@ -175,7 +177,12 @@ const navigate = useNavigate();
 
 
       {pageDynamicalAddress && (
-					<OutputWindow stringForSearch={pageDynamicalAddress} sharedFont={sharedFont} isDark={ isDark} scrollToTop={scrollToTop}/>
+					<OutputWindow
+						stringForSearch={pageDynamicalAddress}
+						sharedFont={sharedFont}
+						isDark={isDark}
+						scrollToTop={scrollToTop}
+						handleRefInput={  handleRefInput }/>
       )}
    </main>
     </div>
