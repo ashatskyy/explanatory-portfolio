@@ -1,0 +1,57 @@
+.error-container-main{
+	max-width: 737px;
+	width: 100%;
+	margin: 132px auto 0;
+	text-align: center;
+}
+
+
+// .svg-wrapper {
+//   width: 100%;
+//   max-width: 64px; 
+// }
+
+// .sad-face {
+// 	margin: 0 auto;
+//   width: 64px;
+//   height: auto;
+//   display: block;
+// }
+
+
+.no-definitions-h1{
+	// margin: 0;
+	margin-top: 44px;
+	color: black;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.no-definitions-h1-dark{
+	color: white;
+}
+
+.no-definitions-p{
+	font-size: 20px;
+	line-height: 24px;
+	font-weight: 300;
+	color: #757575;
+
+}
+
+.request-display {
+  max-width: 717px;
+  padding-left: 50px;
+  padding-right: 50px;
+  user-select: text;
+  hyphens: auto;
+  color: #757575;
+  height: 90px;
+  font-size: 30px;
+  font-weight: 700;
+
+  /* Add these: */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}

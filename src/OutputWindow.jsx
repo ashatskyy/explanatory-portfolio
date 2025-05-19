@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { SetObjectWord } from "./models/SetObjectWord";
 import { populateWordFromData } from "./utils/populateWordFromData";
 import { ResultPositive } from "./ResultPositive";
+import { ResultNegative } from "./ResultNegative";
 
 export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop, handleRefInput  }) {
 	const [fetchedData, setFetchedData] = useState(null);
@@ -68,7 +69,7 @@ export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop,
 				isDark={isDark}
 					handleWordByRef={ handleWordByRef}
 			/>
-				|| fetchedData?.title}
+				|| fetchedData?.title && <ResultNegative isDark={isDark} request={ request}/>}
 			
 			{/* {fetchedData.word && 
 			<ResultPositive
