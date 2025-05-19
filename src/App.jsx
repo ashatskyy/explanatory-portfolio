@@ -72,7 +72,13 @@ const navigate = useNavigate();
 
   const handleInputChange = (e) => setInputedOrAddressString(e.target.value);
 
-	const handleRefInput = (e) => setInputedOrAddressString(e);
+	const handleRefInput = (e) => {
+	
+		setInputedOrAddressString(e); 
+		 navigate(`/${e}`);
+
+	}
+
 
   const goHome = () => {
     navigate("/");

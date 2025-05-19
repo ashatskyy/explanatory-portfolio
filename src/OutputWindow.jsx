@@ -6,19 +6,27 @@ import { ResultPositive } from "./ResultPositive";
 
 export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop, handleRefInput  }) {
 	const [fetchedData, setFetchedData] = useState(null);
-// const [request, setequest] =useState()
+	const [request, setRequest] = useState(stringForSearch);
 
 
 	const handleWordByRef = (wordRef) => {
 	
 		scrollToTop();
-		handleRefInput(wordRef)
+		handleRefInput(wordRef);
+		setRequest(wordRef)
 	}
 
 	useEffect(() => {
-		if (!stringForSearch.trim()) return;
+		setRequest(stringForSearch);
+	 },[stringForSearch])
 
-		fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${stringForSearch}`)
+
+	useEffect(() => {
+
+
+		if (!request.trim()) return;
+
+		fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${request}`)
 			.then((res) => res.json())
 			.then((data) => {
 				if (!Array.isArray(data)) {
@@ -31,7 +39,7 @@ export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop,
 			.catch((err) => {
 				console.error(err);
 			});
-	}, [stringForSearch]);
+	}, [request]);
 
 	useEffect(() => {
 		console.log("Fetched data updated:", fetchedData);
