@@ -41,7 +41,12 @@ const navigate = useNavigate();
 	const [sharedFont, setSharedFont] = useState(() => {
   const stored = localStorage.getItem("fontFamily");
   return stored !== null ? stored : "InterVariable";
-});
+	});
+	
+	  const [isDark, setIsDark] = useState(() => {
+    const theme = localStorage.getItem("theme");
+    return theme === "dark";
+  });
 
 	const inputRef = useRef(null);
 
@@ -78,10 +83,7 @@ const navigate = useNavigate();
 	
 
 
-  const [isDark, setIsDark] = useState(() => {
-    const theme = localStorage.getItem("theme");
-    return theme === "dark";
-  });
+
 
   useEffect(() => {
     console.log(isDark);
@@ -129,8 +131,11 @@ const navigate = useNavigate();
         <input
 						type="text"
 					 ref={inputRef}
-          value={inputedOrAddressString}
-          onChange={handleInputChange}
+						value={inputedOrAddressString}
+						
+						onChange={handleInputChange}
+						
+						
 						placeholder="Search for any word…"
 						className={`input-window ${isDark ? "input-window-dark" : ""}`}
 						
@@ -170,7 +175,7 @@ const navigate = useNavigate();
 
 
       {pageDynamicalAddress && (
-        <OutputWindow stringForSearch={pageDynamicalAddress} />
+					<OutputWindow stringForSearch={pageDynamicalAddress} sharedFont={sharedFont} isDark={ isDark} scrollToTop={scrollToTop}/>
       )}
    </main>
     </div>

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 
 // export function ResultPositive({ fetchedData, isDark, sharedFont, handleWordByRef }) {
-export function ResultPositive({ fetchedData }) {
+export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef }) {
 
   const audioRef = useRef(null);
 	const audioSrc = fetchedData.audio;
@@ -35,7 +35,7 @@ export function ResultPositive({ fetchedData }) {
 			</div>
 			
 			
-      {/* <div className="section-semantics">
+      <div className="section-semantics">
         {[
           "noun",
           "pronoun",
@@ -91,7 +91,7 @@ export function ResultPositive({ fetchedData }) {
 											<>
                       <span
                         className="wordRef"
-                        // onClick={() => handleWordByRef(el)}
+                        onClick={() => handleWordByRef(el)}
                       >
                     
 												{el}
@@ -152,7 +152,7 @@ export function ResultPositive({ fetchedData }) {
 
 
 
-      </div> */}
+      </div>
     </>
   );
 }

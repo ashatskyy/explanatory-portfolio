@@ -4,8 +4,14 @@ import { SetObjectWord } from "./models/SetObjectWord";
 import { populateWordFromData } from "./utils/populateWordFromData";
 import { ResultPositive } from "./ResultPositive";
 
-export function OutputWindow({ stringForSearch }) {
+export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop  }) {
 	const [fetchedData, setFetchedData] = useState(null);
+
+	const handleWordByRef = () => {
+	
+		scrollToTop();
+		
+	}
 
 	useEffect(() => {
 		if (!stringForSearch.trim()) return;
@@ -30,11 +36,28 @@ export function OutputWindow({ stringForSearch }) {
 	}, [fetchedData]);
 
 	return (
-		<div className="output">
+		<div className="output" style={{
+              fontFamily:
+                sharedFont === "Lora"
+                  ? "Lora, serif"
+                  // ? "Lora"
+           
+                  : sharedFont === "InterVariable"
+                  ? "InterVariable, sans-serif"
+                  // ? "InterVariable"
+                
+                  : "Inconsolata, monospace",
+                  // : "Inconsolata",
+        
+            }}>
 
 			{fetchedData?.word && 
 			<ResultPositive
-				fetchedData={fetchedData} />
+				fetchedData={fetchedData}
+				sharedFont={sharedFont}
+				isDark={isDark}
+					handleWordByRef={ handleWordByRef}
+			/>
 				|| fetchedData?.title}
 			
 			{/* {fetchedData.word && 
