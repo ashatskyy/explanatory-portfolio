@@ -23,7 +23,7 @@ export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop,
 	useEffect(() => {
 		if (!request.trim()) return;
 
-		setIsLoading(true); // 🔄 Start loading
+		setIsLoading(true); //start loading
 
 		fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${request}`)
 			.then((res) => res.json())
@@ -40,7 +40,7 @@ export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop,
 				setFetchedData({ title: "Error", message: "Failed to fetch." });
 			})
 			.finally(() => {
-				setIsLoading(false); // ✅ End loading
+				setIsLoading(false); //end loading
 			});
 	}, [request]);
 
