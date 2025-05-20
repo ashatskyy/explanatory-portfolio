@@ -12,6 +12,19 @@
 	// border: 1px solid #000;
 }
 
+
+@media(max-width: 768px){
+  .vocab {
+  width: 89.71vw;
+}}
+
+@media(max-width: 480px){
+  .vocab {
+ margin-top: 28px;
+}}
+
+
+
 .night {
   width: 20px;
   height: 20px;
@@ -20,26 +33,54 @@
 .logo {
   width: 32px;
 	 height: 32px;
+
+}
+
+@media(min-width: 1024px){
+.logo {
+  
 	 cursor: pointer;
 }
+}
+
+@media(max-width: 480px){
+  .logo {
+   width: 28.05px;
+	 height: 32px;
+}}
+
 
 .toggles {
   display: flex;
   align-items: center;
 
 }
+
+
 .shrift-toggle {
   height: 24px;
-width: 200px;
+width: auto;
   display: flex;
   gap: 18px;
   justify-content: end;
   cursor: pointer;
   align-items: center;
-// border: 3px solid green;
+// border: 1px solid green;
 	
 position: relative;
 }
+
+
+@media(max-width: 480px){
+  .shrift-toggle {
+	
+	gap: 16px;
+	
+
+}
+
+}
+
 
 .dropdown {
 	// border: 1px solid #000;
@@ -50,11 +91,24 @@ position: relative;
 
 }
 
+@media(max-width: 480px){
+  .dropdown {
+	
+	font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+	
+
+}
+
+}
+
+
 
 .dropdown-menu {
   position: absolute;
   top: 205%;
-  left: 7%;
+  right: 0;
   background: white;
 
   width: 183px;
@@ -78,27 +132,37 @@ position: relative;
 	height: 8px;
 }
 
+
+.sans-serif,.serif,.mono{
+ font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+@media(max-width: 480px){
+.sans-serif,.serif,.mono{
+ font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+}
+
+
 .sans-serif {
   padding: 24px 0 8px 24px;
   font-family: "InterVariable", sans-serif !important;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
+  
 }
 .serif {
   padding: 8px 0 8px 24px;
   font-family: "Lora", serif !important;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
+  
 }
 .mono {
   padding: 8px 0 24px 24px;
-
   font-family: "Inconsolata", monospace !important;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
+ 
 }
 
 .vl {
@@ -107,12 +171,38 @@ position: relative;
   background-color: #979797;
   margin: 0 26px;
 }
+
+
+@media(max-width: 480px){
+  .vl {
+	
+ margin: 0 16px;
+	
+
+}
+
+}
+
 .light-toggle {
   width: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+	// border: 1px solid #000;
 }
+
+
+@media(max-width: 480px){
+  .light-toggle {
+	
+ width: 71px;
+	
+
+}
+
+}
+
+
 
 .board,
 .point {
@@ -130,10 +220,16 @@ position: relative;
   position: relative;
   transition: background-color 0.3s ease-in-out;
 }
+
+
+@media(min-width:1024px){
 .board:hover {
   cursor: pointer;
   background-color: #a445ed;
 }
+}
+
+
 .point {
   height: 14px;
   width: 14px;

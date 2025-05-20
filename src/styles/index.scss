@@ -66,3 +66,21 @@ body {
 }
 //такой силектор который при налдичии у родителя
 //класс .dark присваивает bady эти свойства
+
+.main {
+  max-width: 737px;
+  width: 100%;
+  margin: 52px auto 0;
+  box-sizing: border-box;
+}
+
+@media(max-width: 768px){
+  .main {
+  width: 89.71vw;
+}}
+
+@media(max-width: 480px){
+  .main {
+ margin-top: 24px;
+}}
+

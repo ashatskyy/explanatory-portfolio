@@ -1,8 +1,20 @@
+
+
 .output {
   margin-top: 15px;
   margin-bottom: 124px;
   width: 100%;
 }
+
+@media(max-width:1024px){
+
+	.output{
+		 margin-bottom: 118px;
+	}
+}
+
+
+
 
 .word {
   margin: 0;
@@ -11,17 +23,44 @@
   padding-bottom: 8px;
   user-select: text;
 	 hyphens: auto;
-  width: 600px;
+  // width: 600px;
 }
+
+@media(max-width:480px){
+.word {
+	  font-size: 32px;
+}
+}
+
 .word-long{
 	font-size: 45px;
 }
+
+@media(max-width:480px){
+.word-long {
+	  font-size: 22px;
+}
+}
+
+
+
+
+
 .phonetic {
-  margin: 0;
+	margin: 0;
   font-size: 24px;
+	line-height: 24px;
   color: #a445ed;
   user-select: text;
 }
+
+
+@media(max-width:480px){
+.phonetic {
+		font-size: 18px;
+}
+}
+
 
 .online-status {
   position: absolute;
@@ -35,8 +74,8 @@
 
 // orphography
 .section-orthography {
-  width: 100%;
 
+width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -44,16 +83,35 @@
 }
 
 .spelling-transcription {
-  height: 114px;
+	
+  min-height: 114px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+
+@media(max-width: 480px){
+.spelling-transcription{
+	min-height: 68px;
+}
+}
+
+
 .example {
-  color: #757575;
+	color: #757575;
+	font-size: 18px;
+	line-height: 24px;
   // margin-bottom: 10px;
 }
+
+
+@media(max-width: 480px){
+.example{
+	font-size: 15px;
+}
+}
+
 
 .synonyms {
   color: #a445ed;
@@ -61,11 +119,23 @@
   font-weight: 700;
 }
 
+@media (max-width: 480px) {
+.synonyms {
+	
+		 font-size: 16px;
+  
+}}
+
+
 .ref {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  // margin-top: 20px;
+  margin-bottom:0;
   font-size: 14px;
+	// line-height: 24px;
 }
+
+
+
 
 .section-semantics {
   user-select: text;
@@ -79,12 +149,30 @@
   margin: 0;
 }
 
+
+@media (max-width: 480px) {
+	.part-of-speech {
+ font-size: 18px;
+  }
+}
+
+
+
+
 .inline-wrapper {
   margin-top: 40px;
   display: flex;
   align-items: center;
   gap: 14px;
 }
+
+
+@media (max-width: 480px) {
+	.inline-wrapper {
+		 margin-top: 32px;
+  }
+}
+
 
 .hr {
   flex: 1; /* makes hr expand to fill the line */
@@ -100,18 +188,43 @@
   margin-top: 40px;
   margin-bottom: 25px;
 }
+
+@media (max-width: 480px) {
+	.word-meaning-synonym {
+		font-size: 18px;
+		margin-top: 32px;
+		margin-bottom: 17px;
+  }
+}
+
+
 .meanigs-examples-block {
   margin-left: 22px;
-  margin-bottom: 24px;
+  // margin-bottom: 24px;
+}
+
+@media (max-width: 480px) {
+	.meanigs-examples-block {
+		
+		 margin-left: 4px;
+  }
 }
 
 .meanig {
   position: relative;
   // display: inline-block;
+	font-size: 18px;
   padding-left: 25px;
   line-height: 24px;
   margin-top: 13px;
   margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+	.meanig {
+		
+		font-size: 15px;
+  }
 }
 
 .meanig::before {
@@ -122,6 +235,8 @@
   font-size: 0.9rem;
   color: #a445ed; 
 }
+
+
 .example {
   padding-left: 23px;
   margin-top: 13px;
@@ -136,6 +251,15 @@
   align-items: flex-start;
 }
 
+@media (max-width: 480px) {
+.synonyms-block  {
+		
+	 padding-top: 24px;
+  }
+}
+
+
+
 .word-synonym {
   margin-right: 20px;
   font-size: 20px;
@@ -144,6 +268,12 @@
 }
 
 
+@media (max-width: 480px) {
+.word-synonym  {
+		
+	 font-size: 16px;
+  }
+}
 
 
 .word-source {
@@ -151,7 +281,7 @@
   font-size: 14px;
   color: #757575;
   display: inline-block;
-	
+	margin-bottom: 0;
 }
 
 .word-source-underscore {
@@ -160,6 +290,7 @@
   color: #757575;
   position: relative;
   display: inline-block;
+margin-bottom: 0;
 }
 
 .word-source-underscore::after {
@@ -174,6 +305,20 @@
 
 .block-ref-to-wiki {
   text-decoration: none;
+	// line-height: 24px;
+	// padding-bottom: 100px;
+	
+}
+
+
+
+.test-block{
+	
+	// max-width: 300px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+	display: inline-block;
 }
 
 
@@ -183,7 +328,12 @@
   color: #2d2d2d;
   font-size: 14px;
   display: inline-block;
-	
+
+	margin-right: 10px;
+	// max-width: 300px;
+  // word-break: break-word;
+  // overflow-wrap: break-word;
+  // hyphens: auto;
 }
 
 .a-text-is-dark {
@@ -195,19 +345,27 @@
   font-size: 14px;
   position: relative;
   display: inline-block;
+	margin-right: 10px;
+	//  max-width: 300px;
+  // word-break: break-word;
+  // overflow-wrap: break-word;
+  // hyphens: auto;
 }
+
+
 
 .a-text-underscore::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 1.5px;
+  bottom: 1px;
   height: 0.5px;
   background-color: #2d2d2d;
 }
 
 .a-text-underscore-is-dark {
+	margin-right: 10px;
   color: white;
   font-size: 14px;
   position: relative;
@@ -227,7 +385,7 @@
 
 
 .a-pic {
-  margin-left: 15px;
+  // margin-left: 15px;
   vertical-align: -1.5px;
 }
 
@@ -236,6 +394,13 @@
   position: relative;
   display: inline-block;
   cursor: pointer;
+}
+
+@media(min-width:1024px){
+
+	.wordRef{
+		 cursor: pointer;
+	}
 }
 
 .wordRef::after {
@@ -251,11 +416,13 @@
   transition: opacity 0.3s ease;
 }
 
+
+@media(min-width:1024px){
 .wordRef:hover::after {
   opacity: 1;
 }
 
-
+}
 
 
 
@@ -275,11 +442,23 @@
 }
 
 
-
-
-.button.playable {
-  cursor: pointer;
+@media(max-width:480px){
+	.button {
+		 width: 48px; 
+  height: 48px;
+	}
 }
+
+
+@media(min-width:1024px){
+
+	.button.playable {
+		cursor: pointer;
+	}
+}
+
+
+
 .button.no-playable {
   opacity: 0;
 }
@@ -299,6 +478,9 @@
   pointer-events: none; 
 }
 
+
+@media(min-width:1024px){
 .button.playable:hover::after {
   opacity: 1;
+}
 }

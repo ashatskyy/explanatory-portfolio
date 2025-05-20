@@ -1,15 +1,17 @@
-.main {
-  max-width: 737px;
-  width: 100%;
-  margin: 52px auto 0;
-  box-sizing: border-box;
-}
 
 .search-container {
   position: relative;
   // padding-bottom: 50px;
   margin-bottom: 30px;
 }
+
+@media(max-width: 480px){
+.search-container{
+	 margin-bottom: 24px;
+}
+
+}
+
 .input-window {
   // position: relative;
   width: 100%;
@@ -29,6 +31,21 @@
 
   box-sizing: border-box;
 }
+
+
+@media(max-width: 480px){
+ .input-window  {
+height: 48px;
+font-size: 16px;
+  font-weight: 700;
+  
+}}
+
+
+
+
+
+
 .input-window-icon {
   width: 18.55px;
   height: 18.55px;

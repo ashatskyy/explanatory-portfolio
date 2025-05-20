@@ -47,7 +47,7 @@ export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef
           "interjection",
         ].map((el) =>
           fetchedData[el].definitions.length > 0 ? (
-            <>
+            <React.Fragment>
               <div className="inline-wrapper">
                 <p
                   className="part-of-speech"
@@ -104,7 +104,7 @@ export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef
               ) : (
                 ""
               )}
-            </>
+            </React.Fragment>
           ) : (
             ""
           )
@@ -123,7 +123,7 @@ export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef
             rel="noopener noreferrer"
             className="block-ref-to-wiki"
           >
-            <span
+            <p
               className={
                 sharedFont === "Inconsolata"
                   ? "word-source"
@@ -131,20 +131,22 @@ export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef
               }
             >
               Source
-            </span>
-
-            <span
+            </p>
+<div className="test-block">
+            <p
               className={
                 sharedFont === "Inconsolata"
-                  ? `a-text ${isDark ? "a-text-is-dark" : ""}`
-                  : isDark
-                  ? "a-text-underscore-is-dark"
-                  : "a-text-underscore"
+										? `a-text ${isDark ? "a-text-is-dark" : ""}`
+										: fetchedData.source[fetchedData.source.length - 1].length < 40 ?
+											
+										( isDark ? "a-text-underscore-is-dark" : "a-text-underscore"):`a-text ${isDark ? "a-text-is-dark" : ""}`
+                  
               }
             >
               {fetchedData.source[fetchedData.source.length - 1]}
-            </span>
-            <img className="a-pic" src="./pics/icon-new-window.svg" alt="" />
+							</p>
+							<img className="a-pic" src="./images/icon-new-window.svg" alt="" />
+							</div>
           </a>
 				</div>
 				
