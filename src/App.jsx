@@ -152,10 +152,10 @@ const enterInputString = (e) => {
      <input
   type="text"
   name="nonsense"
-   autoComplete="off"
-  autoCorrect="off"
-  autoCapitalize="off"
-  spellCheck={false}
+  autocomplete="off"
+  autocorrect="off"
+  autocapitalize="off"
+  spellcheck="false"
 
 						value={inputedOrAddressString}
 						onChange={handleInputChange}
