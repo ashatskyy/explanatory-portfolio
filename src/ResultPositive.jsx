@@ -1,11 +1,15 @@
 import React, { useRef } from "react";
 
 // export function ResultPositive({ fetchedData, isDark, sharedFont, handleWordByRef }) {
-export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef }) {
-
+export function ResultPositive({
+  fetchedData,
+  sharedFont,
+  isDark,
+  handleWordByRef,
+}) {
   const audioRef = useRef(null);
-	const audioSrc = fetchedData.audio;
-	
+  const audioSrc = fetchedData.audio;
+
   const playAudio = () => {
     if (audioSrc !== "") {
       audioRef.current.play();
@@ -18,23 +22,25 @@ export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef
     <>
       <div className="section-orthography">
         <div className="spelling-transcription">
-					<p className={`word ${fetchedData.word.length>14 ? "word-long":""}`}>{fetchedData.word}</p>
+          <h1
+            className={`word ${
+              fetchedData.word.length > 14 ? "word-long" : ""
+            }`}
+          >
+            {fetchedData.word}
+          </h1>
           <p className="phonetic">{fetchedData.phonetic}</p>
         </div>
         <div className="prononciation-audio">
           <audio ref={audioRef} src={audioSrc} />
           <button
             onClick={isPlayable ? playAudio : null}
-  className={`button ${isPlayable ? "playable" : "no-playable"}`}
-  disabled={!isPlayable}
-        
-          >
-          
-          </button>
+            className={`button ${isPlayable ? "playable" : "no-playable"}`}
+            disabled={!isPlayable}
+          ></button>
         </div>
-			</div>
-			
-			
+      </div>
+
       <div className="section-semantics">
         {[
           "noun",
@@ -63,7 +69,6 @@ export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef
                 <hr className="hr" />
               </div>
 
-            
               <p className="word-meaning-synonym ">Meaning</p>
               <div className="meanigs-examples-block">
                 {fetchedData[el].definitions.map((definition, index) => (
@@ -87,17 +92,16 @@ export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef
                 <div className="synonyms-block">
                   <div className="word-synonym">Synonyms</div>
                   <div className="synonyms">
-										{fetchedData[el].synonyms?.map((el, index, arr) => (
-											<>
-                      <span
-                        className="wordRef"
-                        onClick={() => handleWordByRef(el)}
-                      >
-                    
-												{el}
-                      </span>
-												{index < arr.length - 1 && ", "}
-												</>
+                    {fetchedData[el].synonyms?.map((el, index, arr) => (
+                      <>
+                        <span
+                          className="wordRef"
+                          onClick={() => handleWordByRef(el)}
+                        >
+                          {el}
+                        </span>
+                        {index < arr.length - 1 && ", "}
+                      </>
                     ))}
                   </div>
                 </div>
@@ -111,50 +115,39 @@ export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef
         )}
         <div className="inline-wrapper">
           <hr className="hr" />
-				</div>
-				
+        </div>
 
-
-
-				<div className="ref">
-					<p
-              className={
-                sharedFont === "Inconsolata"
-                  ? "word-source"
-                  : "word-source-underscore"
-              }
-            >
-              Source
-            </p>
-          <a
-            href={fetchedData.source[fetchedData.source.length - 1]}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block-ref-to-wiki"
+        <div className="ref">
+          <p
+            className={
+              sharedFont === "Inconsolata"
+                ? "word-source"
+                : "word-source-underscore"
+            }
           >
-            
-<div className="test-block">
-            <p
+            Source
+          </p>
+					<div className="test-block">
+            <a
+              href={fetchedData.source[fetchedData.source.length - 1]}
+              target="_blank"
+              rel="noopener noreferrer"
               className={
                 sharedFont === "Inconsolata"
-										? `a-text ${isDark ? "a-text-is-dark" : ""}`
-										: fetchedData.source[fetchedData.source.length - 1].length < 40 ?
-											
-										( isDark ? "a-text-underscore-is-dark" : "a-text-underscore"):`a-text ${isDark ? "a-text-is-dark" : ""}`
-                  
+                  ? `a-text ${isDark ? "a-text-is-dark" : ""}`
+                  : fetchedData.source[fetchedData.source.length - 1].length <
+                    40
+                  ? isDark
+                    ? "a-text-underscore-is-dark"
+                    : "a-text-underscore"
+                  : `a-text ${isDark ? "a-text-is-dark" : ""}`
               }
             >
-              {fetchedData.source[fetchedData.source.length - 1]}
-							</p>
-							</div>
-							<img className="a-pic" src="./images/icon-new-window.svg" alt="" />
-          </a>
-				</div>
-				
-
-
-
-
+              {`${fetchedData.source[fetchedData.source.length - 1]} `}
+            </a>
+            <img className="a-pic" src="./images/icon-new-window.svg" alt="" />
+          </div>
+        </div>
       </div>
     </>
   );
