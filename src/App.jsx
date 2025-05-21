@@ -136,10 +136,14 @@ const navigate = useNavigate();
 				
 				
 				>
-        <input
-						type="text"
-						autocapitalize="off"
-					 ref={inputRef}
+     <input
+  type="text"
+  name="nonsense"
+   autoComplete="off"
+  autoCorrect="off"
+  autoCapitalize="off"
+  spellCheck={false}
+
 						value={inputedOrAddressString}
 						onChange={handleInputChange}
 						
