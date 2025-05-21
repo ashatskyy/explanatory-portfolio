@@ -61,7 +61,6 @@ const navigate = useNavigate();
 
 
 
-
 const enterInputString = (e) => {
   e.preventDefault();
 
@@ -81,7 +80,6 @@ const enterInputString = (e) => {
     navigate(`/${encodeURIComponent(cleanedInput)}`);
   }
 };
-
 
   const handleInputChange = (e) => setInputedOrAddressString(e.target.value);
 
@@ -143,7 +141,7 @@ const enterInputString = (e) => {
       
 				<main className="main">
 				<form className="search-container" onSubmit={enterInputString}
-				
+				 autoComplete="off"
 				
 			
 				
@@ -152,10 +150,13 @@ const enterInputString = (e) => {
      <input
   type="text"
   name="nonsense"
-  autocomplete="off"
-  autocorrect="off"
-  autocapitalize="off"
-  spellcheck="false"
+ 
+
+						
+						 autoComplete="off"
+  autoCorrect="off"
+  autoCapitalize="off"
+  spellCheck={false}
 
 						value={inputedOrAddressString}
 						onChange={handleInputChange}
