@@ -116,14 +116,8 @@ export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef
 
 
 
-        <div className="ref">
-          <a
-            href={fetchedData.source[fetchedData.source.length - 1]}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block-ref-to-wiki"
-          >
-            <p
+				<div className="ref">
+					<p
               className={
                 sharedFont === "Inconsolata"
                   ? "word-source"
@@ -132,6 +126,13 @@ export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef
             >
               Source
             </p>
+          <a
+            href={fetchedData.source[fetchedData.source.length - 1]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block-ref-to-wiki"
+          >
+            
 <div className="test-block">
             <p
               className={
@@ -145,8 +146,8 @@ export function ResultPositive({ fetchedData,sharedFont, isDark, handleWordByRef
             >
               {fetchedData.source[fetchedData.source.length - 1]}
 							</p>
-							<img className="a-pic" src="./images/icon-new-window.svg" alt="" />
 							</div>
+							<img className="a-pic" src="./images/icon-new-window.svg" alt="" />
           </a>
 				</div>
 				

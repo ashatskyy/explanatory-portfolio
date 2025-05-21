@@ -138,9 +138,9 @@ const navigate = useNavigate();
 				>
         <input
 						type="text"
+						autocapitalize="off"
 					 ref={inputRef}
 						value={inputedOrAddressString}
-						
 						onChange={handleInputChange}
 						
 						 maxLength="100" 
