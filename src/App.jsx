@@ -62,13 +62,26 @@ const navigate = useNavigate();
 
 
 
-  const enterInputString = (e) => {
-    e.preventDefault();
-    const cleanedInput = inputedOrAddressString.trim();
-    if (cleanedInput && cleanedInput !== pageDynamicalAddress) {
-      navigate(`/${cleanedInput}`);
-    }
-  };
+const enterInputString = (e) => {
+  e.preventDefault();
+
+  const cleanedInput = inputedOrAddressString.trim();
+
+ 
+  if (!cleanedInput) return;
+
+
+  if (/^https?:\/\//i.test(cleanedInput)) {
+    // alert("Please enter a word or term, not a URL.");
+    return;
+  }
+
+  
+  if (cleanedInput !== pageDynamicalAddress) {
+    navigate(`/${encodeURIComponent(cleanedInput)}`);
+  }
+};
+
 
   const handleInputChange = (e) => setInputedOrAddressString(e.target.value);
 
