@@ -114,18 +114,14 @@ width: 100%;
 }
 
 
-.synonyms {
-  color: #a445ed;
-  font-size: 20px;
-  font-weight: 700;
-}
 
-@media (max-width: 480px) {
-.synonyms {
-	
-		 font-size: 16px;
-  
-}}
+
+
+
+
+
+
+
 
 
 .ref {
@@ -244,6 +240,12 @@ width: 100%;
   margin-bottom: 0;
 }
 
+
+
+
+
+
+
 .synonyms-block {
   padding-top: 40px;
   display: flex;
@@ -275,6 +277,104 @@ width: 100%;
 	 font-size: 16px;
   }
 }
+
+.synonyms {
+  color: #a445ed;
+  font-size: 20px;
+  font-weight: 700;
+		user-select: none;
+}
+
+@media (max-width: 480px) {
+.synonyms {
+	
+		 font-size: 16px;
+  
+}}
+
+
+
+
+.wordRef {
+  position: relative;
+  // display: inline-block;
+	 white-space: nowrap;
+  cursor: pointer;
+	
+}
+
+@media(min-width:1024px){
+
+	.wordRef{
+		 cursor: pointer;
+	}
+}
+
+.wordRef::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;      
+  height: 1.5px;     
+  background-color: #a445ed;
+  
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+@media(min-width:1025px){
+.wordRef:hover::after {
+  opacity: 1;
+}
+
+}
+
+
+@media(max-width:1024px){
+.wordRef:active::after {
+  opacity: 1;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .word-source {
@@ -416,48 +516,6 @@ width: 100%;
   vertical-align: -1.5px;
 }
 
-
-.wordRef {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-	user-select: none;
-}
-
-@media(min-width:1024px){
-
-	.wordRef{
-		 cursor: pointer;
-	}
-}
-
-.wordRef::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;      
-  height: 1.5px;     
-  background-color: #a445ed;
-  
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-
-@media(min-width:1025px){
-.wordRef:hover::after {
-  opacity: 1;
-}
-
-}
-
-
-@media(max-width:1024px){
-.wordRef:active::after {
-  opacity: 1;
-}
-}
 
 
 .button {
