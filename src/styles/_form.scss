@@ -13,24 +13,24 @@
 }
 
 .input-window {
-  // position: relative;
   width: 100%;
   height: 64px;
-
   padding-left: 24px;
   padding-right: 61px;
-
-  // font: inherit;
   font-size: 20px;
-	// line-height: 200px;
   font-weight: 700;
   border-radius: 16px;
-
   color: inherit;
   background-color: #f4f4f4;
   border: none;
-
   box-sizing: border-box;
+}
+
+/* Hide the "❌" clear button in search inputs */
+.input-window::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
 }
 
 

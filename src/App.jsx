@@ -6,12 +6,10 @@ import {
   useParams,
 } from "react-router-dom";
 
-
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { Header } from "./Header";
 import { OutputWindow } from "./OutputWindow";
-
 
 export function App() {
   return (
@@ -24,84 +22,61 @@ export function App() {
   );
 }
 
-
-
-
-
-
 export function HomePage() {
+  const navigate = useNavigate();
+  const { pageDynamicalAddress } = useParams();
 
-const navigate = useNavigate();
-	const { pageDynamicalAddress } = useParams();
-	
-	const [inputedOrAddressString, setInputedOrAddressString] = useState(
-		pageDynamicalAddress || "");
+  const [inputedOrAddressString, setInputedOrAddressString] = useState(
+    pageDynamicalAddress || ""
+  );
 
-	// const [sharedFont, setSharedFont] = useState("InterVariable");
-	const [sharedFont, setSharedFont] = useState(() => {
-  const stored = localStorage.getItem("fontFamily");
-  return stored !== null ? stored : "InterVariable";
-	});
-	
-	  const [isDark, setIsDark] = useState(() => {
+  // const [sharedFont, setSharedFont] = useState("InterVariable");
+  const [sharedFont, setSharedFont] = useState(() => {
+    const stored = localStorage.getItem("fontFamily");
+    return stored !== null ? stored : "InterVariable";
+  });
+
+  const [isDark, setIsDark] = useState(() => {
     const theme = localStorage.getItem("theme");
     return theme === "dark";
   });
 
-	const inputRef = useRef(null);
+  const inputRef = useRef(null);
 
+	// fixing cursor lip on enter
+  // useEffect(() => {
+  //   setInputedOrAddressString(pageDynamicalAddress || "");
 
-  useEffect(() => {
-   
-		setInputedOrAddressString(pageDynamicalAddress || "");
+  // }, [pageDynamicalAddress]);
 
-  }, [pageDynamicalAddress]);
+  const enterInputString = (e) => {
+    e.preventDefault();
 
-	
+    const cleanedInput = inputedOrAddressString.trim();
 
+    if (!cleanedInput) return;
 
+    if (/^https?:\/\//i.test(cleanedInput)) {
+      // alert("Please enter a word or term, not a URL.");
+      return;
+    }
 
-const enterInputString = (e) => {
-  e.preventDefault();
-
-  const cleanedInput = inputedOrAddressString.trim();
-
- 
-  if (!cleanedInput) return;
-
-
-  if (/^https?:\/\//i.test(cleanedInput)) {
-    // alert("Please enter a word or term, not a URL.");
-    return;
-  }
-
-  
-  if (cleanedInput !== pageDynamicalAddress) {
-    navigate(`/${encodeURIComponent(cleanedInput)}`);
-  }
-};
+    if (cleanedInput !== pageDynamicalAddress) {
+      navigate(`/${encodeURIComponent(cleanedInput)}`);
+    }
+  };
 
   const handleInputChange = (e) => setInputedOrAddressString(e.target.value);
 
-	const handleRefInput = (e) => {
-	
-		setInputedOrAddressString(e); 
-		 navigate(`/${e}`);
-
-	}
-
+  const handleRefInput = (e) => {
+    setInputedOrAddressString(e);
+    navigate(`/${e}`);
+  };
 
   const goHome = () => {
     navigate("/");
-    setInputedOrAddressString(""); 
+    setInputedOrAddressString("");
   };
-	
-	
-	
-	
-
-
-
 
   useEffect(() => {
     console.log(isDark);
@@ -121,100 +96,76 @@ const enterInputString = (e) => {
     }
   };
 
-	const containerRef = useRef(null);
+  const containerRef = useRef(null);
 
-	const scrollToTop = () => {
-		// containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
-		containerRef.current?.scrollTo({ top: 0 });
-	};
+  const scrollToTop = () => {
+    // containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+    containerRef.current?.scrollTo({ top: 0 });
+  };
 
-	return (
-		<div className="scroll-container" ref={containerRef} >
+  return (
+    <div className="scroll-container" ref={containerRef}>
+      <Header
+        isDark={isDark}
+        handleThemeToggle={handleThemeToggle}
+        goHome={goHome}
+        onUpdate={setSharedFont}
+      />
 
-			<Header
-				isDark={isDark}
-				handleThemeToggle={handleThemeToggle}
-				goHome={goHome}
-				onUpdate={setSharedFont}
-			
-			/>
-      
-				<main className="main">
-				<form className="search-container" onSubmit={enterInputString}
-				 autoComplete="off"
-				
-			
-				
-				
-				>
-     <input
-  type="text"
-  name="nonsense"
- 
+      <main className="main">
 
-						
-						 autoComplete="off"
+<form
+  className="search-container"
+  onSubmit={enterInputString}
+  autoComplete="off"
+  spellCheck="false"
+>
+ <input
+  type="search"
+  name="search_input_xyz"
+  autoComplete="off"
   autoCorrect="off"
   autoCapitalize="off"
-  spellCheck={false}
-
-						value={inputedOrAddressString}
-						onChange={handleInputChange}
+	spellCheck={false}
 						
-						 maxLength="100" 
-						placeholder="Search for any word…"
-						className={`input-window ${isDark ? "input-window-dark" : ""}`}
+	value={inputedOrAddressString}
 						
+  onChange={handleInputChange}
+  maxLength="100"
+  placeholder="Search for any word…"
+  className={`input-window ${isDark ? "input-window-dark" : ""}`}
+  style={{
+    fontFamily:
+      sharedFont === "Lora"
+        ? "Lora, serif"
+        : sharedFont === "InterVariable"
+        ? "InterVariable, sans-serif"
+        : "Inconsolata, monospace",
+  }}
+/>
 
 
-	style={{
-              fontFamily:
-                sharedFont === "Lora"
-                  ? "Lora, serif"
-                  // ? "Lora"
-           
-                  : sharedFont === "InterVariable"
-                  ? "InterVariable, sans-serif"
-                  // ? "InterVariable"
-                
-                  : "Inconsolata, monospace",
-                  // : "Inconsolata",
-        
-            }}
-
-
-
-
-
-
-
-					/>
-					 <img
-          className="input-window-icon"
-          src="./images/icon-search.svg"
-          alt=""
-          onClick={() => inputRef.current?.focus()}
-        />
-				</form>
-				
+  <img
+    className="input-window-icon"
+    src="./images/icon-search.svg"
+    alt=""
+    onClick={() => inputRef.current?.focus()}
+  />
+</form>
 
 
 
-      {pageDynamicalAddress && (
-					<OutputWindow
-						stringForSearch={pageDynamicalAddress}
-						sharedFont={sharedFont}
-						isDark={isDark}
-						scrollToTop={scrollToTop}
-						handleRefInput={  handleRefInput }/>
-      )}
-   </main>
+
+        {pageDynamicalAddress && (
+          <OutputWindow
+            stringForSearch={pageDynamicalAddress}
+            sharedFont={sharedFont}
+            isDark={isDark}
+            scrollToTop={scrollToTop}
+            handleRefInput={handleRefInput}
+          />
+        )}
+      </main>
     </div>
-
-	)
-	
-	
-	
-	
+  );
 }
-
