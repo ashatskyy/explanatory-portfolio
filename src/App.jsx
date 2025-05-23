@@ -24,11 +24,40 @@ export function App() {
 
 export function HomePage() {
   const navigate = useNavigate();
+  //useNavigate() is a hook from react-router-dom.
+  //it returns a function navigate(path, options)
+  //path = string path you want to go to
+  //options = optional config object like { replace: true }
+  // Go to another page
+  // navigate('/about');
+  // Go to a page and replace current entry in history (like redirect)
+  //navigate('/login', { replace: true });
+  // Go back one step in history
+  //navigate(-1);
+  // Go forward one step in history
+  //navigate(1);
+
   const { pageDynamicalAddress } = useParams();
+  //This is a hook from react-router-dom.
+  //It returns an object containing all the dynamic URL parameters for the current route.
+
+  //здесь мы деструктурируем  useParams(); и берем из него
+  //pageDynamicalAddress для дальнейшего использования
+  //и он не ведет себя как юзстейт
 
   const [inputedOrAddressString, setInputedOrAddressString] = useState(
     pageDynamicalAddress || ""
-  );
+	);
+	
+
+
+
+	const [exectInputOnEnter, setExectInputonEnter] = useState(pageDynamicalAddress || "");
+
+
+
+
+
 
   // const [sharedFont, setSharedFont] = useState("InterVariable");
   const [sharedFont, setSharedFont] = useState(() => {
@@ -43,14 +72,49 @@ export function HomePage() {
 
   const inputRef = useRef(null);
 
-	// fixing cursor lip on enter
+  // fixing cursor lip on enter
+
+  //bad for react solution
   // useEffect(() => {
-  //   setInputedOrAddressString(pageDynamicalAddress || "");
+  // 	if (inputedOrAddressString.trim() !== pageDynamicalAddress) {
+  // 		setInputedOrAddressString(pageDynamicalAddress || "");
+  // 	}
 
   // }, [pageDynamicalAddress]);
 
+  //jamping cursor solution
+
+	useEffect(() => {
+		
+if (exectInputOnEnter.trim() === pageDynamicalAddress) { 
+			setInputedOrAddressString(exectInputOnEnter || "");
+
+		}else(setInputedOrAddressString(pageDynamicalAddress || ""))
+  }, [pageDynamicalAddress, exectInputOnEnter]);
+
+
+	//два варианиа как они не равны:
+	//1.  они не равны и подстриженый excet равен page
+
+
+	//2. они не равны и подстоиженый exct не равне page
+	//тогда ставим его равным pg
+
+//тот что был
+// useEffect(() => {
+		
+// 			setInputedOrAddressString(pageDynamicalAddress || "");
+
+//   }, [pageDynamicalAddress]);
+
+
+	
   const enterInputString = (e) => {
-    e.preventDefault();
+		e.preventDefault();
+		
+
+		setExectInputonEnter(inputedOrAddressString);
+
 
     const cleanedInput = inputedOrAddressString.trim();
 
@@ -62,7 +126,11 @@ export function HomePage() {
     }
 
     if (cleanedInput !== pageDynamicalAddress) {
-      navigate(`/${encodeURIComponent(cleanedInput)}`);
+			navigate(`/${encodeURIComponent(cleanedInput)}`);
+			
+			//если в запросе есть знаки типа внутрений пробел
+			//или закии припинания то их безпасно переаедут в адрес
+			//а потом и назд
     }
   };
 
@@ -75,11 +143,12 @@ export function HomePage() {
 
   const goHome = () => {
     navigate("/");
-    setInputedOrAddressString("");
+		setInputedOrAddressString("");
+	
   };
 
   useEffect(() => {
-    console.log(isDark);
+
     document.documentElement.classList.toggle("dark", isDark);
   }, [isDark]);
 
@@ -113,48 +182,48 @@ export function HomePage() {
       />
 
       <main className="main">
-
-<form
-  className="search-container"
-  onSubmit={enterInputString}
-  autoComplete="off"
-  spellCheck="false"
->
- <input
-  type="search"
-  name="search_input_xyz"
-  autoComplete="off"
-  autoCorrect="off"
-  autoCapitalize="off"
-	spellCheck={false}
+        <form
+					className="search-container"
+					
+					onSubmit={enterInputString}
+					
+          autoComplete="off"
+          spellCheck="false"
+        >
+					<input
+						value={inputedOrAddressString}
 						
-	value={inputedOrAddressString}
+						onChange={handleInputChange}
 						
-  onChange={handleInputChange}
-  maxLength="100"
-  placeholder="Search for any word…"
-  className={`input-window ${isDark ? "input-window-dark" : ""}`}
-  style={{
-    fontFamily:
-      sharedFont === "Lora"
-        ? "Lora, serif"
-        : sharedFont === "InterVariable"
-        ? "InterVariable, sans-serif"
-        : "Inconsolata, monospace",
-  }}
-/>
 
+            type="search"
+            name="search_input_xyz"
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+						spellCheck={false}
+            maxLength="100"
+						placeholder="Search for any word…"
+						
+						className={`input-window ${isDark ? "input-window-dark" : ""}`}
+						
+            style={{
+              fontFamily:
+                sharedFont === "Lora"
+                  ? "Lora, serif"
+                  : sharedFont === "InterVariable"
+                  ? "InterVariable, sans-serif"
+                  : "Inconsolata, monospace",
+            }}
+          />
 
-  <img
-    className="input-window-icon"
-    src="./images/icon-search.svg"
-    alt=""
-    onClick={() => inputRef.current?.focus()}
-  />
-</form>
-
-
-
+          <img
+            className="input-window-icon"
+            src="./images/icon-search.svg"
+            alt=""
+            onClick={() => inputRef.current?.focus()}
+          />
+        </form>
 
         {pageDynamicalAddress && (
           <OutputWindow
