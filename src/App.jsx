@@ -52,7 +52,7 @@ export function HomePage() {
 
 
 
-	const [exectInputOnEnter, setExectInputonEnter] = useState(pageDynamicalAddress || "");
+	// const [exectInputOnEnter, setExectInputonEnter] = useState(pageDynamicalAddress || "");
 
 
 
@@ -82,15 +82,30 @@ export function HomePage() {
 
   // }, [pageDynamicalAddress]);
 
-  //jamping cursor solution
+	//jamping cursor solution
+	
 
-	useEffect(() => {
+
+
+
+
+
+// 	useEffect(() => {
 		
-if (exectInputOnEnter.trim() === pageDynamicalAddress) { 
-			setInputedOrAddressString(exectInputOnEnter || "");
+// if (exectInputOnEnter.trim() === pageDynamicalAddress) { 
+// 			setInputedOrAddressString(exectInputOnEnter || "");
 
-		}else(setInputedOrAddressString(pageDynamicalAddress || ""))
-  }, [pageDynamicalAddress, exectInputOnEnter]);
+// 		}else(setInputedOrAddressString(pageDynamicalAddress || ""))
+// 	}, [pageDynamicalAddress, exectInputOnEnter]);
+	
+
+
+
+
+
+
+
+
 
 
 	//два варианиа как они не равны:
@@ -101,11 +116,11 @@ if (exectInputOnEnter.trim() === pageDynamicalAddress) {
 	//тогда ставим его равным pg
 
 //тот что был
-// useEffect(() => {
+useEffect(() => {
 		
-// 			setInputedOrAddressString(pageDynamicalAddress || "");
+			setInputedOrAddressString(pageDynamicalAddress || "");
 
-//   }, [pageDynamicalAddress]);
+  }, [pageDynamicalAddress]);
 
 
 	
@@ -113,7 +128,9 @@ if (exectInputOnEnter.trim() === pageDynamicalAddress) {
 		e.preventDefault();
 		
 
-		setExectInputonEnter(inputedOrAddressString);
+		if (!inputedOrAddressString) return;
+			
+			// setExectInputonEnter(inputedOrAddressString);
 
 
     const cleanedInput = inputedOrAddressString.trim();
@@ -131,7 +148,9 @@ if (exectInputOnEnter.trim() === pageDynamicalAddress) {
 			//если в запросе есть знаки типа внутрений пробел
 			//или закии припинания то их безпасно переаедут в адрес
 			//а потом и назд
-    }
+		}
+		
+		 inputRef.current?.blur();
   };
 
   const handleInputChange = (e) => setInputedOrAddressString(e.target.value);
@@ -192,7 +211,7 @@ if (exectInputOnEnter.trim() === pageDynamicalAddress) {
         >
 					<input
 						value={inputedOrAddressString}
-						
+						 ref={inputRef}
 						onChange={handleInputChange}
 						
 
@@ -216,13 +235,22 @@ if (exectInputOnEnter.trim() === pageDynamicalAddress) {
                   : "Inconsolata, monospace",
             }}
           />
-
-          <img
+<button type="submit"  className="input-window-button">	<img
+					className="input-window-button-img"
+            // className="input-window-icon"
+            src="./images/icon-search.svg"
+            alt=""
+            // onClick={() => inputRef.current?.focus()}
+            // onClick={enterInputString}
+          /></button>
+					{/* <img
+					
             className="input-window-icon"
             src="./images/icon-search.svg"
             alt=""
             onClick={() => inputRef.current?.focus()}
-          />
+          
+          /> */}
         </form>
 
         {pageDynamicalAddress && (
