@@ -25,8 +25,7 @@
   border: none;
   box-sizing: border-box;
 }
-
-/* Hide the "❌" clear button in search inputs */
+/* hide the x clear button in search inputs */
 .input-window::-webkit-search-cancel-button {
   -webkit-appearance: none;
   appearance: none;

@@ -4,8 +4,14 @@ import { SetObjectWord } from "./models/SetObjectWord";
 import { populateWordFromData } from "./utils/populateWordFromData";
 import { ResultPositive } from "./ResultPositive";
 import { ResultNegative } from "./ResultNegative";
+import { NoFatchDisplay } from "./NoFatchDisplay";
+
+
+
+
 
 export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop, handleRefInput }) {
+
 	const [fetchedData, setFetchedData] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [request, setRequest] = useState(stringForSearch);
@@ -19,6 +25,8 @@ export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop,
 	useEffect(() => {
 		setRequest(stringForSearch);
 	}, [stringForSearch]);
+
+
 
 	useEffect(() => {
 		if (!request.trim()) return;
@@ -37,13 +45,18 @@ export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop,
 			})
 			.catch((err) => {
 				console.error(err);
-				setFetchedData({ title: "Error", message: "Failed to fetch." });
+				// setFetchedData({ title: "Error", message: "Failed to fetch." });
+				setFetchedData({ status: "Error", message: "Failed to fetch." });
+				// если тут изменить ключь title то при отсуствии интернета 
+				//ложное сообщение мы уже не увидим
 			})
 			.finally(() => {
 				setIsLoading(false); //end loading
 			});
 	}, [request]);
 
+
+	
 	useEffect(() => {
 		console.log("Fetched data updated:", fetchedData);
 	}, [fetchedData]);
@@ -71,8 +84,10 @@ export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop,
 					handleWordByRef={handleWordByRef}
 				/>
 			) : fetchedData && Object.prototype.hasOwnProperty.call(fetchedData, "title") ? (
+			// ) : fetchedData && Object.prototype.hasOwnProperty.call(fetchedData, "status") ? (
+			// ) : fetchedData ? (
 				<ResultNegative isDark={isDark} request={request} />
-			) : null}
+			) : <NoFatchDisplay isDark={isDark}/>}
 		</div>
 	);
 }

@@ -47,17 +47,9 @@ export function HomePage() {
 
   const [inputedOrAddressString, setInputedOrAddressString] = useState(
     pageDynamicalAddress || ""
-	);
-	
+  );
 
-
-
-	// const [exectInputOnEnter, setExectInputonEnter] = useState(pageDynamicalAddress || "");
-
-
-
-
-
+  // const [exectInputOnEnter, setExectInputonEnter] = useState(pageDynamicalAddress || "");
 
   // const [sharedFont, setSharedFont] = useState("InterVariable");
   const [sharedFont, setSharedFont] = useState(() => {
@@ -82,56 +74,36 @@ export function HomePage() {
 
   // }, [pageDynamicalAddress]);
 
-	//jamping cursor solution
-	
+  //jamping cursor solution
 
+  // 	useEffect(() => {
 
+  // if (exectInputOnEnter.trim() === pageDynamicalAddress) {
+  // 			setInputedOrAddressString(exectInputOnEnter || "");
 
+  // 		}else(setInputedOrAddressString(pageDynamicalAddress || ""))
+  // 	}, [pageDynamicalAddress, exectInputOnEnter]);
 
+  //два варианиа как они не равны:
+  //1.  они не равны и подстриженый excet равен page
 
+  //2. они не равны и подстоиженый exct не равне page
+  //тогда ставим его равным pg
 
-// 	useEffect(() => {
-		
-// if (exectInputOnEnter.trim() === pageDynamicalAddress) { 
-// 			setInputedOrAddressString(exectInputOnEnter || "");
-
-// 		}else(setInputedOrAddressString(pageDynamicalAddress || ""))
-// 	}, [pageDynamicalAddress, exectInputOnEnter]);
-	
-
-
-
-
-
-
-
-
-
-
-	//два варианиа как они не равны:
-	//1.  они не равны и подстриженый excet равен page
-
-
-	//2. они не равны и подстоиженый exct не равне page
-	//тогда ставим его равным pg
-
-//тот что был
-useEffect(() => {
-		
-			setInputedOrAddressString(pageDynamicalAddress || "");
-
+  //тот что был
+  useEffect(() => {
+    setInputedOrAddressString(pageDynamicalAddress || "");
   }, [pageDynamicalAddress]);
 
 
-	
+
+
   const enterInputString = (e) => {
-		e.preventDefault();
-		
+    e.preventDefault();
 
-		if (!inputedOrAddressString) return;
-			
-			// setExectInputonEnter(inputedOrAddressString);
+    if (!inputedOrAddressString) return;
 
+    // setExectInputonEnter(inputedOrAddressString);
 
     const cleanedInput = inputedOrAddressString.trim();
 
@@ -143,15 +115,18 @@ useEffect(() => {
     }
 
     if (cleanedInput !== pageDynamicalAddress) {
-			navigate(`/${encodeURIComponent(cleanedInput)}`);
-			
-			//если в запросе есть знаки типа внутрений пробел
-			//или закии припинания то их безпасно переаедут в адрес
-			//а потом и назд
-		}
-		
-		 inputRef.current?.blur();
+      navigate(`/${encodeURIComponent(cleanedInput)}`);
+
+      //если в запросе есть знаки типа внутрений пробел
+      //или закии припинания то их безпасно переаедут в адрес
+      //а потом и назд
+    }
+
+    inputRef.current?.blur();
   };
+
+
+
 
   const handleInputChange = (e) => setInputedOrAddressString(e.target.value);
 
@@ -162,12 +137,10 @@ useEffect(() => {
 
   const goHome = () => {
     navigate("/");
-		setInputedOrAddressString("");
-	
+    setInputedOrAddressString("");
   };
 
   useEffect(() => {
-
     document.documentElement.classList.toggle("dark", isDark);
   }, [isDark]);
 
@@ -202,30 +175,24 @@ useEffect(() => {
 
       <main className="main">
         <form
-					className="search-container"
-					
-					onSubmit={enterInputString}
-					
+          className="search-container"
+          onSubmit={enterInputString}
           autoComplete="off"
           spellCheck="false"
         >
-					<input
-						value={inputedOrAddressString}
-						 ref={inputRef}
-						onChange={handleInputChange}
-						
-
+          <input
+            value={inputedOrAddressString}
+            ref={inputRef}
+            onChange={handleInputChange}
             type="search"
             name="search_input_xyz"
             autoComplete="off"
             autoCorrect="off"
             autoCapitalize="off"
-						spellCheck={false}
+            spellCheck={false}
             maxLength="100"
-						placeholder="Search for any word…"
-						
-						className={`input-window ${isDark ? "input-window-dark" : ""}`}
-						
+            placeholder="Search for any word…"
+            className={`input-window ${isDark ? "input-window-dark" : ""}`}
             style={{
               fontFamily:
                 sharedFont === "Lora"
@@ -235,15 +202,18 @@ useEffect(() => {
                   : "Inconsolata, monospace",
             }}
           />
-<button type="submit"  className="input-window-button">	<img
-					className="input-window-button-img"
-            // className="input-window-icon"
-            src="./images/icon-search.svg"
-            alt=""
-            // onClick={() => inputRef.current?.focus()}
-            // onClick={enterInputString}
-          /></button>
-					{/* <img
+          <button type="submit" className="input-window-button">
+
+            <img
+              className="input-window-button-img"
+              // className="input-window-icon"
+              src="./images/icon-search.svg"
+              alt=""
+              // onClick={() => inputRef.current?.focus()}
+              // onClick={enterInputString}
+            />
+          </button>
+          {/* <img
 					
             className="input-window-icon"
             src="./images/icon-search.svg"

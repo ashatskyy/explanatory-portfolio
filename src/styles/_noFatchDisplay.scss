@@ -1,0 +1,34 @@
+.noFatchMessageBlock{
+	max-width: 737px;
+	width: 100%;
+	margin: 132px auto 0;
+	// text-align: center;
+// font-size: 18px;
+// 			line-height: 22px;
+// 	font-weight: 300;
+color: #F93A5C;
+border: 1px solid #FDDAD9;
+ border-radius: 16px;
+ padding: 18px;
+ box-sizing: border-box;
+background-color: rgba(254, 245, 245, 0.8);
+}
+
+.noFatchMessageBlock-dark{
+	background-color: rgba(254, 245, 245, 0.1);
+	border: 1px solid rgba(253, 218, 217, 0.5);
+	color: rgba(249, 58, 92, 0.9);
+}
+
+@media(max-width:480px){
+	.noFatchMessageBlock{
+		margin: 66px auto 0;
+	}
+}
+
+   .icon {
+        width: 14px;
+        height: 14px;
+        stroke: #FA6967;
+        // margin: 10px;
+      }
