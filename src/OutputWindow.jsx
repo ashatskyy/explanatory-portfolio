@@ -10,7 +10,7 @@ import { NoFatchDisplay } from "./NoFatchDisplay";
 
 
 
-export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop, handleRefInput }) {
+export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop, handleRefInput, reload }) {
 
 	const [fetchedData, setFetchedData] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
@@ -87,7 +87,7 @@ export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop,
 			// ) : fetchedData && Object.prototype.hasOwnProperty.call(fetchedData, "status") ? (
 			// ) : fetchedData ? (
 				<ResultNegative isDark={isDark} request={request} />
-			) : <NoFatchDisplay isDark={isDark}/>}
+					) : <NoFatchDisplay isDark={isDark}    reload={reload} />}
 		</div>
 	);
 }

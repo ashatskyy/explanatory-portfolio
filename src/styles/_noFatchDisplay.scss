@@ -1,34 +1,106 @@
-.noFatchMessageBlock{
-	max-width: 737px;
-	width: 100%;
-	margin: 132px auto 0;
-	// text-align: center;
-// font-size: 18px;
-// 			line-height: 22px;
-// 	font-weight: 300;
-color: #F93A5C;
-border: 1px solid #FDDAD9;
- border-radius: 16px;
- padding: 18px;
- box-sizing: border-box;
-background-color: rgba(254, 245, 245, 0.8);
-}
+ .cont {
+        max-width: 737px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
 
-.noFatchMessageBlock-dark{
-	background-color: rgba(254, 245, 245, 0.1);
-	border: 1px solid rgba(253, 218, 217, 0.5);
-	color: rgba(249, 58, 92, 0.9);
-}
+        border-radius: 16px;
+        border: 1px solid black;
+        background-color: goldenrod;
+        padding: 10px;
+      }
 
-@media(max-width:480px){
-	.noFatchMessageBlock{
-		margin: 66px auto 0;
-	}
-}
+      .b1,
+      .b2,
+      .b3 {
+        height: 60px;
+      }
 
-   .icon {
-        width: 14px;
-        height: 14px;
-        stroke: #FA6967;
-        // margin: 10px;
+      .b1 {
+        width: 30px;
+        flex: 0 0 30px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        box-sizing: border-box;
+        padding-top: 5px;
+      }
+
+      .b2 {
+        background-color: goldenrod;
+font-family: 'Times New Roman, serif' !important;
+        font-size: 15px;
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: calc(100% - 30px - 100px);
+        box-sizing: border-box;
+        word-wrap: break-word;
+        padding: 10px;
+        padding-top: 5px;
+      }
+
+      .b3 {
+        width: 100px;
+        flex: 0 0 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .bu {
+        width: 80px;
+
+        border-radius: 20px;
+        border: none;
+        height: 32px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .icon-info {
+        width: 22px;
+        height: 22px;
+      }
+      .icon-retry {
+        width: 20px;
+        height: 20px;
+      }
+
+      @media (max-width: 486px) {
+        .b1,
+        .b2 {
+          height: 50px;
+        }
+
+        .cont {
+          padding-bottom: 10px;
+          padding-right: 15px;
+        }
+
+        .icon-retry {
+          width: 18px;
+          height: 18px;
+        }
+        .bu {
+          width: 70px;
+          height: 30px;
+          font-size: 12px;
+        }
+        .b3 {
+          width: 100%;
+          flex: 0 0 100%;
+          height: 30px;
+        }
+        .b2 {
+          max-width: calc(100% - 30px);
+          font-size: 14px;
+          padding-bottom: 0;
+        }
+      }
+      @media (max-width: 408px) {
+        .b1,
+        .b2 {
+          height: 65px;
+        }
       }

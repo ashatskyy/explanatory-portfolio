@@ -47,7 +47,9 @@ export function HomePage() {
 
   const [inputedOrAddressString, setInputedOrAddressString] = useState(
     pageDynamicalAddress || ""
-  );
+	);
+	
+	const [reloadKey, setReloadKey] = useState(0);
 
   // const [exectInputOnEnter, setExectInputonEnter] = useState(pageDynamicalAddress || "");
 
@@ -138,7 +140,21 @@ export function HomePage() {
   const goHome = () => {
     navigate("/");
     setInputedOrAddressString("");
-  };
+	};
+	
+
+	// const reload = () => {
+	// 	 navigate(`/${pageDynamicalAddress}`);
+  //   setInputedOrAddressString(pageDynamicalAddress);
+	// }
+
+const reload = () => {
+  setReloadKey((prev) => prev + 1); // This will force OutputWindow to remount
+};
+
+
+
+
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
@@ -225,11 +241,14 @@ export function HomePage() {
 
         {pageDynamicalAddress && (
           <OutputWindow
-            stringForSearch={pageDynamicalAddress}
-            sharedFont={sharedFont}
-            isDark={isDark}
-            scrollToTop={scrollToTop}
-            handleRefInput={handleRefInput}
+						stringForSearch={pageDynamicalAddress}
+						sharedFont={sharedFont}
+						isDark={isDark}
+						scrollToTop={scrollToTop}
+						handleRefInput={handleRefInput}
+						reload={ reload}
+						 
+						 key={reloadKey}
           />
         )}
       </main>
