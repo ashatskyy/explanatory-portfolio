@@ -87,7 +87,7 @@ export function OutputWindow({ stringForSearch, sharedFont, isDark, scrollToTop,
 			// ) : fetchedData && Object.prototype.hasOwnProperty.call(fetchedData, "status") ? (
 			// ) : fetchedData ? (
 				<ResultNegative isDark={isDark} request={request} />
-					) : <NoFatchDisplay isDark={isDark}    reload={reload} />}
+					) : <NoFatchDisplay isDark={isDark}   reload={reload} />}
 		</div>
 	);
 }

@@ -246,9 +246,14 @@ const reload = () => {
 						isDark={isDark}
 						scrollToTop={scrollToTop}
 						handleRefInput={handleRefInput}
-						reload={ reload}
-						 
-						 key={reloadKey}
+
+						reload={reload}
+						key={reloadKey}
+
+						// This ensures each reload() call forces a re-mount of OutputWindow by changing the key.
+						//кнопка в NoFatchDisplay запускает здесь величение reloadKey и OutputWindow
+						//перезагружается
+						
           />
         )}
       </main>
