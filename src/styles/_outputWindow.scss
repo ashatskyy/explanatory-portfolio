@@ -14,8 +14,6 @@
 }
 
 
-
-
 .word {
   margin: 0;
   font-size: 64px;
@@ -41,9 +39,6 @@
 	  font-size: 22px;
 }
 }
-
-
-
 
 
 .phonetic {
@@ -229,7 +224,7 @@ width: 100%;
   position: absolute;
   left: -4px; 
   top: -1.5px; 
-  font-size: 0.9rem;
+  // font-size: 0.9rem;
   color: #a445ed; 
 }
 
@@ -532,6 +527,12 @@ width: 100%;
   overflow: hidden;
 }
 
+@media(min-width:1024px){
+
+	.button.playable {
+		cursor: pointer;
+	}
+}
 
 @media(max-width:480px){
 	.button {
@@ -541,12 +542,6 @@ width: 100%;
 }
 
 
-@media(min-width:1024px){
-
-	.button.playable {
-		cursor: pointer;
-	}
-}
 
 
 

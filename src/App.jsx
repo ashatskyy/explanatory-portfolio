@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet";
 
 import { Header } from "./Header";
 import { OutputWindow } from "./OutputWindow";
@@ -23,37 +24,18 @@ export function App() {
 }
 
 export function HomePage() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
-  //useNavigate() is a hook from react-router-dom.
-  //it returns a function navigate(path, options)
-  //path = string path you want to go to
-  //options = optional config object like { replace: true }
-  // Go to another page
-  // navigate('/about');
-  // Go to a page and replace current entry in history (like redirect)
-  //navigate('/login', { replace: true });
-  // Go back one step in history
-  //navigate(-1);
-  // Go forward one step in history
-  //navigate(1);
 
   const { pageDynamicalAddress } = useParams();
-  //This is a hook from react-router-dom.
-  //It returns an object containing all the dynamic URL parameters for the current route.
-
-  //здесь мы деструктурируем  useParams(); и берем из него
-  //pageDynamicalAddress для дальнейшего использования
-  //и он не ведет себя как юзстейт
 
   const [inputedOrAddressString, setInputedOrAddressString] = useState(
     pageDynamicalAddress || ""
-	);
-	
-	const [reloadKey, setReloadKey] = useState(0);
+  );
 
-  // const [exectInputOnEnter, setExectInputonEnter] = useState(pageDynamicalAddress || "");
+  const [reloadKey, setReloadKey] = useState(0);
 
-  // const [sharedFont, setSharedFont] = useState("InterVariable");
   const [sharedFont, setSharedFont] = useState(() => {
     const stored = localStorage.getItem("fontFamily");
     return stored !== null ? stored : "InterVariable";
@@ -66,69 +48,29 @@ export function HomePage() {
 
   const inputRef = useRef(null);
 
-  // fixing cursor lip on enter
-
-  //bad for react solution
-  // useEffect(() => {
-  // 	if (inputedOrAddressString.trim() !== pageDynamicalAddress) {
-  // 		setInputedOrAddressString(pageDynamicalAddress || "");
-  // 	}
-
-  // }, [pageDynamicalAddress]);
-
-  //jamping cursor solution
-
-  // 	useEffect(() => {
-
-  // if (exectInputOnEnter.trim() === pageDynamicalAddress) {
-  // 			setInputedOrAddressString(exectInputOnEnter || "");
-
-  // 		}else(setInputedOrAddressString(pageDynamicalAddress || ""))
-  // 	}, [pageDynamicalAddress, exectInputOnEnter]);
-
-  //два варианиа как они не равны:
-  //1.  они не равны и подстриженый excet равен page
-
-  //2. они не равны и подстоиженый exct не равне page
-  //тогда ставим его равным pg
-
-  //тот что был
   useEffect(() => {
     setInputedOrAddressString(pageDynamicalAddress || "");
   }, [pageDynamicalAddress]);
-
-
-
 
   const enterInputString = (e) => {
     e.preventDefault();
 
     if (!inputedOrAddressString) return;
 
-    // setExectInputonEnter(inputedOrAddressString);
-
-    const cleanedInput = inputedOrAddressString.trim();
+    const cleanedInput = inputedOrAddressString.trim().toLocaleLowerCase();
 
     if (!cleanedInput) return;
 
-    if (/^https?:\/\//i.test(cleanedInput)) {
-      // alert("Please enter a word or term, not a URL.");
+    if (/^https?:\/\//i.test(cleanedInput) || /[^a-zA-Z ]/.test(cleanedInput)) {
       return;
     }
 
     if (cleanedInput !== pageDynamicalAddress) {
       navigate(`/${encodeURIComponent(cleanedInput)}`);
-
-      //если в запросе есть знаки типа внутрений пробел
-      //или закии припинания то их безпасно переаедут в адрес
-      //а потом и назд
     }
 
     inputRef.current?.blur();
   };
-
-
-
 
   const handleInputChange = (e) => setInputedOrAddressString(e.target.value);
 
@@ -140,21 +82,11 @@ export function HomePage() {
   const goHome = () => {
     navigate("/");
     setInputedOrAddressString("");
-	};
-	
+  };
 
-	// const reload = () => {
-	// 	 navigate(`/${pageDynamicalAddress}`);
-  //   setInputedOrAddressString(pageDynamicalAddress);
-	// }
-
-const reload = () => {
-  setReloadKey((prev) => prev + 1); // This will force OutputWindow to remount
-};
-
-
-
-
+  const reload = () => {
+    setReloadKey((prev) => prev + 1);
+  };
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
@@ -176,87 +108,100 @@ const reload = () => {
   const containerRef = useRef(null);
 
   const scrollToTop = () => {
-    // containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
     containerRef.current?.scrollTo({ top: 0 });
   };
 
   return (
-    <div className="scroll-container" ref={containerRef}>
-      <Header
-        isDark={isDark}
-        handleThemeToggle={handleThemeToggle}
-        goHome={goHome}
-        onUpdate={setSharedFont}
-      />
+    <>
+      <Helmet>
+        <title>
+          English Explanatory Dictionary Online. Portfolio by Oleksandr S
+        </title>
+        <meta
+          name="description"
+          content={`English Explanatory Dictionary Online. Discover clear definitions, example sentences, and word usage to improve your English vocabulary and understanding.`}
+        />
+        <meta
+          property="og:title"
+          content={`English Explanatory Dictionary Online. Portfolio by Oleksandr S`}
+        />
+        <meta
+          property="og:description"
+          content={`English Explanatory Dictionary Online. Discover clear definitions, example sentences, and word usage to improve your English vocabulary and understanding.`}
+        />
+      </Helmet>
 
-      <main className="main">
-        <form
-          className="search-container"
-          onSubmit={enterInputString}
-          autoComplete="off"
-          spellCheck="false"
-        >
-          <input
-            value={inputedOrAddressString}
-            ref={inputRef}
-            onChange={handleInputChange}
-            type="search"
-            name="search_input_xyz"
+      <div className="scroll-container" ref={containerRef}>
+        <Header
+          isDark={isDark}
+          handleThemeToggle={handleThemeToggle}
+          goHome={goHome}
+          onUpdate={setSharedFont}
+        />
+
+        <main className="main">
+          <form
+            className="search-container"
+            onSubmit={enterInputString}
             autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            spellCheck={false}
-            maxLength="100"
-            placeholder="Search for any word…"
-            className={`input-window ${isDark ? "input-window-dark" : ""}`}
-            style={{
-              fontFamily:
-                sharedFont === "Lora"
-                  ? "Lora, serif"
-                  : sharedFont === "InterVariable"
-                  ? "InterVariable, sans-serif"
-                  : "Inconsolata, monospace",
-            }}
-          />
-          <button type="submit" className="input-window-button">
-
-            <img
-              className="input-window-button-img"
-              // className="input-window-icon"
-              src="./images/icon-search.svg"
-              alt=""
-              // onClick={() => inputRef.current?.focus()}
-              // onClick={enterInputString}
-            />
-          </button>
-          {/* <img
-					
-            className="input-window-icon"
-            src="./images/icon-search.svg"
-            alt=""
-            onClick={() => inputRef.current?.focus()}
-          
-          /> */}
-        </form>
-
-        {pageDynamicalAddress && (
-          <OutputWindow
-						stringForSearch={pageDynamicalAddress}
-						sharedFont={sharedFont}
-						isDark={isDark}
-						scrollToTop={scrollToTop}
-						handleRefInput={handleRefInput}
-
-						reload={reload}
-						key={reloadKey}
-
-						// This ensures each reload() call forces a re-mount of OutputWindow by changing the key.
-						//кнопка в NoFatchDisplay запускает здесь величение reloadKey и OutputWindow
-						//перезагружается
+            spellCheck="false"
+          >
+						<input
+							
+							className={`input-window ${isDark ? "input-window-dark" : ""}`}
 						
-          />
-        )}
-      </main>
-    </div>
+							 style={{
+                fontFamily:
+                  sharedFont === "Lora"
+                    ? "Lora, serif"
+                    : sharedFont === "InterVariable"
+                    ? "InterVariable, sans-serif"
+                    : "Inconsolata, monospace",
+              }}
+
+              readOnly={isLoading}
+              value={inputedOrAddressString}
+              ref={inputRef}
+              onChange={handleInputChange}
+              type="search"
+              name="search_input_xyz"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              maxLength="100"
+              placeholder="Search for any word…"
+						/>
+						
+            <button type="submit" className="input-window-button">
+              <img
+                className="input-window-button-img"
+                src="./images/icon-search.svg"
+                alt="Search"
+              />
+						</button>
+						
+          </form>
+
+          {pageDynamicalAddress ? (
+            <OutputWindow
+              stringForSearch={pageDynamicalAddress}
+              sharedFont={sharedFont}
+              isDark={isDark}
+              scrollToTop={scrollToTop}
+              handleRefInput={handleRefInput}
+              reload={reload}
+              key={reloadKey}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+            />
+          ) : (
+            <h1 className="visually-hidden">
+              English Explanatory Dictionary Online.
+            </h1>
+          )}
+        </main>
+      </div>
+    </>
   );
 }

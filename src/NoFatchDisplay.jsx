@@ -25,9 +25,9 @@ function DelayedComponent({ reload, isDark}) {
         </svg>
       </div>
 			<div className={`b2 ${isDark ? "b2-dark" : ""}`}>
+				<h1 className="visually-hidden">An error occurred.</h1>
         An error occurred. Either the engine you request does not exist or there
         was another issue processing your request.
-
       </div>
       <div className="b3">
 				{/* <button className={ `bu ${isDark? "bu-dark":"" }`} style={{ border: '1px solid black' }} onClick={ reload}> */}
