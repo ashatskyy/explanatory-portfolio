@@ -79,7 +79,8 @@ export function ResultPositive({
                     className="part-of-speech"
                     style={
                       sharedFont === "InterVariable"
-                        ? { fontVariationSettings: '"slnt" -10' }
+                        // ? { fontVariationSettings: '"slnt" -10' }
+                        ? {  fontStyle: "italic" }
                         : { fontStyle: "normal" }
                     }
                   >
@@ -140,7 +141,8 @@ export function ResultPositive({
             <hr className="hr" />
           </div>
 
-          <div className="ref">
+					<div className="ref">
+						
             <p
               className={
                 sharedFont === "Inconsolata"
@@ -149,7 +151,8 @@ export function ResultPositive({
               }
             >
               Source
-            </p>
+						</p>
+						
             <div className="test-block">
               <a
                 href={fetchedData.source[fetchedData.source.length - 1]}
@@ -158,15 +161,17 @@ export function ResultPositive({
                 className={
                   sharedFont === "Inconsolata"
                     ? `a-text ${isDark ? "a-text-is-dark" : ""}`
-                    : fetchedData.source[fetchedData.source.length - 1].length <
-                      40
+                    : fetchedData.source[fetchedData.source.length - 1]
                     ? isDark
                       ? "a-text-underscore-is-dark"
                       : "a-text-underscore"
                     : `a-text ${isDark ? "a-text-is-dark" : ""}`
                 }
               >
-                {`${fetchedData.source[fetchedData.source.length - 1]} `}
+							{fetchedData.source[fetchedData.source.length - 1].length < 40
+  ? fetchedData.source[fetchedData.source.length - 1]
+  : `${fetchedData.source[fetchedData.source.length - 1].slice(0, 37)}...`
+}
               </a>
               <a
                 href={fetchedData.source[fetchedData.source.length - 1]}
