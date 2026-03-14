@@ -19,6 +19,6 @@ My portfolio website for English Explanatory Dictionary. Pixel-perfect implement
 ## Available at the following web address
 https://ashatskyy.github.io/explanatory-portfolio/
 
-## Autor
+## Author
 Alexander Shatsky
 
