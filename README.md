@@ -4,6 +4,11 @@
 Pixel-perfect implementation based on a Figma design file for an English Explanatory Dictionary website
 
 ## Features
+- Fetches information: from one of the most powerful web vocabulary APIs
+- Provides transcription: for each word
+- Provides examples of usage: for each word
+- Provides direct references: for each word’s synonyms
+- Provides audio pronunciation: for each word
 - Supports: light and dark mode
 - Allows: users to switch between three different fonts
 - Responsive design: works seamlessly on desktop, tablet, and mobile devices
